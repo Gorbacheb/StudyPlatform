@@ -1,7 +1,7 @@
 ﻿# Лабороторная работа №1
 Выполнили: Жукова Анна, Недугов Владимр 6131-010402D
 # Предметная область
-![img_5.png](img_5.png)
+![img_5.png](readme_images/1.png)
 # Используемые технологии
 - Jakarta Servlet 5.0
 - Jakarta Pages (JSP) 
@@ -18,13 +18,27 @@
 1) Скачать postgresql.jar в директорию standalone\deployments
 2) Перейти в директорию "wildfly-37.0.1.Final\bin\" выполнить скрипт 
 `./add-user.sh -m -u admin -p admin`
-3) Перейти в консоль администратора `http://localhost:9990/console/`
-4) Создать dataSource 
+3) Выполнить скрипт 
+`./standalone.sh`
+4) Перейти в консоль администратора `http://localhost:9990/console/`
+5) Создать dataSource 
 
-4.1 ![img_1.png](img_1.png)
-4.2 ![img_2.png](img_2.png)
-4.3 ![img_3.png](img_3.png)
-4.4 ![img_4.png](img_4.png)
+5.1 
+
+![img_1.png](readme_images/2.png)
+
+5.2 
+
+![img_2.png](readme_images/3.png)
+
+5.3 
+
+![img_3.png](readme_images/4.png)
+
+5.4 
+
+![img_4.png](readme_images/5.png)
+
 
 Выполнить деплой war файла приложения
 
