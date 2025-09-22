@@ -8,7 +8,6 @@ public class TopicDto {
     private String title;
     private String description;
     private Integer estimatedHours;
-    private LocalDateTime createdDate;
     private List<TaskDto> tasks;
 
     public TopicDto() {
@@ -20,7 +19,6 @@ public class TopicDto {
         this.title = title;
         this.description = description;
         this.estimatedHours = estimatedHours;
-        this.createdDate = createdDate;
     }
 
     public Long getId() { return id; }
@@ -34,9 +32,6 @@ public class TopicDto {
 
     public Integer getEstimatedHours() { return estimatedHours; }
     public void setEstimatedHours(Integer estimatedHours) { this.estimatedHours = estimatedHours; }
-
-    public LocalDateTime getCreatedDate() { return createdDate; }
-    public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }
 
     public List<TaskDto> getTasks() { return tasks; }
     public void setTasks(List<TaskDto> tasks) { this.tasks = tasks; }

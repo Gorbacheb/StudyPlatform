@@ -22,9 +22,7 @@ public class TopicMapper {
         dto.setTitle(topic.getTitle());
         dto.setDescription(topic.getDescription());
         dto.setEstimatedHours(topic.getEstimatedHours());
-        dto.setCreatedDate(topic.getCreatedDate());
 
-        // Маппим задачи, если они загружены
         if (topic.getTasks() != null && !topic.getTasks().isEmpty()) {
             dto.setTasks(topic.getTasks().stream()
                     .map(taskMapper::toDto)
@@ -44,7 +42,6 @@ public class TopicMapper {
         topic.setTitle(dto.getTitle());
         topic.setDescription(dto.getDescription());
         topic.setEstimatedHours(dto.getEstimatedHours());
-        topic.setCreatedDate(dto.getCreatedDate());
 
         return topic;
     }

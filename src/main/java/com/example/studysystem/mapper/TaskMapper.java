@@ -17,8 +17,6 @@ public class TaskMapper {
         dto.setTitle(task.getTitle());
         dto.setDescription(task.getDescription());
         dto.setStatus(task.getStatus());
-        dto.setDeadline(task.getDeadline());
-        dto.setCreatedDate(task.getCreatedDate());
 
         if (task.getTopic() != null) {
             dto.setTopicId(task.getTopic().getId());
@@ -38,8 +36,6 @@ public class TaskMapper {
         task.setTitle(dto.getTitle());
         task.setDescription(dto.getDescription());
         task.setStatus(dto.getStatus());
-        task.setDeadline(dto.getDeadline());
-        task.setCreatedDate(dto.getCreatedDate());
 
         return task;
     }

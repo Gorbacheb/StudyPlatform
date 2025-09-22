@@ -23,14 +23,10 @@ public class Topic {
     @Column(name = "estimated_hours")
     private Integer estimatedHours;
 
-    @Column(name = "created_date", nullable = false)
-    private LocalDateTime createdDate;
-
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 
     public Topic() {
-        this.createdDate = LocalDateTime.now();
     }
 
     public Topic(String title, String description, Integer estimatedHours) {
@@ -51,9 +47,6 @@ public class Topic {
 
     public Integer getEstimatedHours() { return estimatedHours; }
     public void setEstimatedHours(Integer estimatedHours) { this.estimatedHours = estimatedHours; }
-
-    public LocalDateTime getCreatedDate() { return createdDate; }
-    public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }
 
     public List<Task> getTasks() { return tasks; }
     public void setTasks(List<Task> tasks) { this.tasks = tasks; }

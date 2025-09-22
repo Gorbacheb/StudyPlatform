@@ -23,7 +23,7 @@ public class TopicRepositoryImpl implements TopicRepository {
 
     @Override
     public List<Topic> findAll() {
-        return entityManager.createQuery("SELECT t FROM Topic t", Topic.class)
+        return entityManager.createQuery("SELECT t FROM Topic t ", Topic.class)
                 .getResultList();
     }
 

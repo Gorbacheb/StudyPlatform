@@ -21,15 +21,17 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        return entityManager.createQuery("SELECT t FROM Task t", Task.class)
+        return entityManager.createQuery("SELECT t FROM Task t LEFT JOIN FETCH t.topic", Task.class)
                 .getResultList();
     }
 
     @Override
     public List<Task> findByTopicId(Long topicId) {
-        return entityManager.createQuery("SELECT t FROM Task t WHERE t.topic.id = :topicId", Task.class)
+        var entities =  entityManager.createQuery(
+                "SELECT t FROM Task t LEFT JOIN FETCH t.topic WHERE t.topic.id = :topicId", Task.class)
                 .setParameter("topicId", topicId)
                 .getResultList();
+        return entities;
     }
 
     @Override

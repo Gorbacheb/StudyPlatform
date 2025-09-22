@@ -22,24 +22,16 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     private TaskStatus status = TaskStatus.NOT_STARTED;
 
-    private LocalDateTime deadline;
-
-    @Column(name = "created_date", nullable = false)
-    private LocalDateTime createdDate;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topic_id", nullable = false)
     private Topic topic;
 
-    public Task() {
-        this.createdDate = LocalDateTime.now();
-    }
+    public Task() { }
 
     public Task(String title, String description, LocalDateTime deadline) {
         this();
         this.title = title;
         this.description = description;
-        this.deadline = deadline;
     }
 
     public Long getId() { return id; }
@@ -53,12 +45,6 @@ public class Task implements Serializable {
 
     public TaskStatus getStatus() { return status; }
     public void setStatus(TaskStatus status) { this.status = status; }
-
-    public LocalDateTime getDeadline() { return deadline; }
-    public void setDeadline(LocalDateTime deadline) { this.deadline = deadline; }
-
-    public LocalDateTime getCreatedDate() { return createdDate; }
-    public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }
 
     public Topic getTopic() { return topic; }
     public void setTopic(Topic topic) { this.topic = topic; }

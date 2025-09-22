@@ -3,6 +3,7 @@ package com.example.studysystem.servlet;
 import com.example.studysystem.dto.TaskDto;
 import com.example.studysystem.entity.TaskStatus;
 import com.example.studysystem.service.TaskService;
+import com.example.studysystem.service.TopicService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,6 +19,9 @@ public class TaskServlet extends HttpServlet {
 
     @Inject
     private TaskService taskService;
+
+    @Inject
+    private TopicService topicService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -68,13 +72,15 @@ public class TaskServlet extends HttpServlet {
         if (topicIdParam != null && !topicIdParam.isEmpty()) {
             Long topicId = Long.parseLong(topicIdParam);
             tasks = taskService.findByTopicId(topicId);
+            var topic = topicService.findById(topicId);
             request.setAttribute("topicId", topicId);
+            request.setAttribute("topicTitle", topic.get().getTitle());
         } else {
             tasks = taskService.findAll();
         }
 
         request.setAttribute("tasks", tasks);
-        request.getRequestDispatcher("/WEB-INF/views/tasks/list.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/tasks.jsp").forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
@@ -85,7 +91,7 @@ public class TaskServlet extends HttpServlet {
             request.setAttribute("topicId", Long.parseLong(topicIdParam));
         }
 
-        request.getRequestDispatcher("/WEB-INF/views/tasks/form.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/task/form.jsp").forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -96,7 +102,7 @@ public class TaskServlet extends HttpServlet {
                 .orElseThrow(() -> new ServletException("Task not found with id: " + id));
 
         request.setAttribute("task", task);
-        request.getRequestDispatcher("/WEB-INF/views/tasks/form.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/task/form.jsp").forward(request, response);
     }
 
     private void createTask(HttpServletRequest request, HttpServletResponse response)
@@ -107,10 +113,6 @@ public class TaskServlet extends HttpServlet {
         taskDto.setDescription(request.getParameter("description"));
         taskDto.setStatus(TaskStatus.valueOf(request.getParameter("status")));
 
-        String deadlineStr = request.getParameter("deadline");
-        if (deadlineStr != null && !deadlineStr.isEmpty()) {
-            taskDto.setDeadline(LocalDateTime.parse(deadlineStr));
-        }
 
         String topicIdParam = request.getParameter("topicId");
         if (topicIdParam != null && !topicIdParam.isEmpty()) {
@@ -132,10 +134,6 @@ public class TaskServlet extends HttpServlet {
         taskDto.setDescription(request.getParameter("description"));
         taskDto.setStatus(TaskStatus.valueOf(request.getParameter("status")));
 
-        String deadlineStr = request.getParameter("deadline");
-        if (deadlineStr != null && !deadlineStr.isEmpty()) {
-            taskDto.setDeadline(LocalDateTime.parse(deadlineStr));
-        }
 
         String topicIdParam = request.getParameter("topicId");
         if (topicIdParam != null && !topicIdParam.isEmpty()) {

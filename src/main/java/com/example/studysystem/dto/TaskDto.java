@@ -9,8 +9,6 @@ public class TaskDto {
     private String title;
     private String description;
     private TaskStatus status;
-    private LocalDateTime deadline;
-    private LocalDateTime createdDate;
     private Long topicId;
     private String topicTitle;
 
@@ -24,8 +22,6 @@ public class TaskDto {
         this.title = title;
         this.description = description;
         this.status = status;
-        this.deadline = deadline;
-        this.createdDate = createdDate;
         this.topicId = topicId;
         this.topicTitle = topicTitle;
     }
@@ -42,12 +38,6 @@ public class TaskDto {
     public TaskStatus getStatus() { return status; }
     public void setStatus(TaskStatus status) { this.status = status; }
 
-    public LocalDateTime getDeadline() { return deadline; }
-    public void setDeadline(LocalDateTime deadline) { this.deadline = deadline; }
-
-    public LocalDateTime getCreatedDate() { return createdDate; }
-    public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }
-
     public Long getTopic() { return topicId; }
     public void setTopic(Long topic) { this.topicId = topic; }
 
@@ -55,6 +45,7 @@ public class TaskDto {
         this.topicId = id;
     }
 
+    public String getTopicTitle() { return topicTitle; }
     public void setTopicTitle(String title) {
         this.topicTitle = title;
     }
